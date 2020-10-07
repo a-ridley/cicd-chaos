@@ -16,27 +16,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Chaos Experiment #1 - Increase CPU 20 percent for 120 secs"
-          command: |
-            cd chaos-experiments/
-            ./experiment1.sh ${GREMLIN_TEAM_ID} ${GREMLIN_API_KEY} ${USER_NAME}
-  chaos_exper2:
-    docker:
-      - image: ariv3ra/terraform-gcp:tf-v0.13.3
-    steps:
-      - checkout
-      - run:
-          name: "Chaos Experiment #2 - Increase CPU 60 percent for 120 secs"
-          command: |
-            cd chaos-experiments/
-            ./experiment2.sh ${GREMLIN_TEAM_ID} ${GREMLIN_API_KEY} ${USER_NAME}
-  chaos_exper3:
-    docker:
-      - image: ariv3ra/terraform-gcp:tf-v0.13.3
-    steps:
-      - checkout
-      - run:
-          name: "Chaos Experiment #3 -Latency Example"
+          name: "Chaos Experiment #3 - Latency"
           command: |
             cd chaos-experiments/
             ./experiment3.sh ${GREMLIN_TEAM_ID} ${GREMLIN_API_KEY} ${USER_NAME}
@@ -50,18 +30,4 @@ workflows:
             - deploy_cicd_app      
       - chaos_exper1:
           requires:
-            - exec_exper1
-      - exec_exper2:
-          type: approval
-          requires:
-            - chaos_exper1
-      - chaos_exper2:
-          requires:
-            - exec_exper2
-      - exec_exper3:
-          type: approval
-          requires:
-            - chaos_exper2
-      - chaos_exper3:
-          requires:
-            - exec_exper3             
+            - exec_exper1         
