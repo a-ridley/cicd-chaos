@@ -19,7 +19,7 @@ jobs:
           name: "Chaos Experiment #3 - Latency"
           command: |
             cd chaos-experiments/
-            ./experiment3.sh ${GREMLIN_TEAM_ID} ${GREMLIN_API_KEY} ${USER_NAME}
+            ./experiment3.sh
 workflows:
   deploy_chaos:
     jobs:
