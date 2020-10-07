@@ -16,7 +16,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Chaos Experiment #3 - Latency"
+          name: "Chaos Experiment #3 - Latency Experiment"
           command: |
             cd chaos-experiments/
             ./experiment2.sh ${GREMLIN_TEAM_ID} ${GREMLIN_API_KEY} ${USER_NAME}
@@ -30,4 +30,4 @@ workflows:
             - deploy_cicd_app      
       - chaos_exper1:
           requires:
-            - exec_exper1         
+            - exec_exper1          
